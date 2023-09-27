@@ -13,7 +13,7 @@ let matrix,
 	initialY = 0,
 	touchX,
 	initialX = 0,
-	row = 4,
+	rows = 4,
 	columns = 4,
     swipeDirection;
     
@@ -21,5 +21,28 @@ let rectLeft = grid.getBoundingClientRect().left;
 let rectTop = grid.getBoundingClientRect().top;
 
 const getXY = (e) => {
-
+    touchX = e.touches[0].pageX - rectLeft;
+    touchY = e.touches[0].pageY - rectTop;
 }
+
+// Create the grid
+const createGrid = () => {
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            const boxDiv = document.createElement("div");
+            boxDiv.classList.add("box");
+            boxDiv.setAttribute("data-position", `${i}_${j}`)
+            grid.appendChild(boxDiv);
+        }
+    }
+}
+
+
+const adjacentCheck = (arr) => {
+    for (let i = 0; i < arr.lenght - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            return true;
+        }
+    }
+    return false;
+};
