@@ -151,6 +151,95 @@ const checker = (arr, reverseArr = false) => {
 	return arr;
 };
 
+// Slide logic
+const slideDown = () => {
+	for (let i = 0; i < columns; i++) {
+		let num = [];
+		for (let j = 0; j < rows; j++) {
+			num.push(matrix[j][i]);
+		}
+		num = checker(num, true);
+		for (let j = 0; j < rows; j++) {
+			matrix[j][i] = num[j];
+			let element = document.querySelector(`[data-position=${j}_${i}]`);
+			element.innerHTML = matrix[j][i] ? matrix[j][i] : "";
+			element.classList.value = "";
+			element.classList.add("box", `box-${matrix[j][i]}`);
+		}
+	}
+	let decision = Math.random() > 0.5 ? 1 : 0;
+	if (decision) {
+		setTimeout(generateFour, 200);
+	} else {
+		setTimeout(generateTwo, 200);
+	}
+};
 
+const slideUp = () => {
+	for (let i = 0; i < columns; i++) {
+		let num = [];
+		for (let j = 0; j < rows; j++) {
+			num.push(matrix[j][i]);
+		}
+		num = checker(num);
+		for (let j = 0; j < rows; j++) {
+			matrix[j][i] = num[j];
+			let element = document.querySelector(`[data-position = '${j}_${i}']`);
+			element.innerHTML = matrix[j][i] ? matrix[j][i] : "";
+			element.classList.value = "";
+			element.classList.add("box", `box-${matrix[j][i]}`);
+		}
+	}
+	let decision = Math.random() > 0.5 ? 1 : 0;
+	if (decision) {
+		setTimeout(generateFour, 200);
+	} else {
+		setTimeout(generateTwo, 200);
+	}
+};
 
+const slideRight = () => {
+	for (let i = 0; i < rows; i++) {
+		let num = [];
+		for (let j = 0; j < columns; j++) {
+			num.push(matrix[i][j]);
+		}
+		num = checker(num, true);
+		for (let j = 0; j < columns; j++) {
+			matrix[i][j] = num[j];
+			let element = document.querySelector(`[data-position = '${i}_${j}']`);
+			element.innerHTML = matrix[i][j] ? matrix[i][j] : "";
+			element.classList.value = "";
+			element.classList.add("box", `box-${matrix[i][j]}`);
+		}
+	}
+	let decision = Math.random() > 0.5 ? 1 : 0;
+	if (decision) {
+		setTimeout(generateFour, 200);
+	} else {
+		setTimeout(generateTwo, 200);
+	}
+};
 
+const slideLeft = () => {
+	for (let i = 0; i < rows; i++) {
+		let num = [];
+		for (let j = 0; j < columns; j++) {
+			num.push(matrix[i][j]);
+		}
+		num = checker(num);
+		for (let j = 0; j < columns; j++) {
+			matrix[i][j] = num[j];
+			let element = document.querySelector(`[data-position = '${i}_${j}']`);
+			element.innerHTML = matrix[i][j] ? matrix[i][j] : "";
+			element.classList.value = "";
+			element.classList.add("box", `box-${matrix[i][j]}`);
+		}
+	}
+	let decision = Math.random() > 0.5 ? 1 : 0;
+	if (decision) {
+		setTimeout(generateFour, 200);
+	} else {
+		setTimeout(generateTwo, 200);
+	}
+};
