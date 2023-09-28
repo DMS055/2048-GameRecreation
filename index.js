@@ -87,6 +87,7 @@ const gameOverCheck = () => {
 	}
 };
 
+// Generate "2" Tiles
 const generateTwo = () => {
 	if (hasEmptyBox()) {
 		let randomRow = randomPosition(matrix);
@@ -105,6 +106,8 @@ const generateTwo = () => {
 		gameOverCheck();
 	}
 };
+
+// Generate "4" Tiles
 const generateFour = () => {
 	if (hasEmptyBox()) {
 		let randomRow = randomPosition(matrix);
@@ -123,3 +126,31 @@ const generateFour = () => {
 		gameOverCheck();
 	}
 };
+
+const removeZero = (arr) => arr.filter((num) => num);
+const checker = (arr, reverseArr = false) => {
+	arr = reverseArr ? removeZero(arr).reverse() : removeZero(arr);
+	for (let i = 0; i < arr.length - 1; i++) {
+		if (arr[i] == arr[i + 1]) {
+			arr[i] += arr[i + 1];
+			arr[i + 1] = 0;
+			score += arr[i];
+		}
+	}
+	arr = reverseArr ? removeZero(arr).reverse() : removeZero(arr);
+
+	let missingCount = 4 - arr.length;
+	while (missingCount > 0) {
+		if (reverseArr) {
+			arr.unshift(0);
+		} else {
+			arr.push(0);
+		}
+		missingCount -= 1;
+	}
+	return arr;
+};
+
+
+
+
