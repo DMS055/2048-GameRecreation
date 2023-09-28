@@ -109,7 +109,7 @@ const generateTwo = () => {
 
 // Generate "4" Tiles
 const generateFour = () => {
-	if (hasEmptyBox()) {
+	if (emptyBoxCheck()) {
 		let randomRow = randomPos(matrix);
 		let randomCol = randomPos(matrix[randomPos(matrix)]);
 		if (matrix[randomRow][randomCol] == 0) {
@@ -161,7 +161,7 @@ const slideDown = () => {
 		num = checker(num, true);
 		for (let j = 0; j < rows; j++) {
 			matrix[j][i] = num[j];
-			let element = document.querySelector(`[data-position=${j}_${i}]`);
+			let element = document.querySelector(`[data-position='${j}_${i}']`);
 			element.innerHTML = matrix[j][i] ? matrix[j][i] : "";
 			element.classList.value = "";
 			element.classList.add("box", `box-${matrix[j][i]}`);
