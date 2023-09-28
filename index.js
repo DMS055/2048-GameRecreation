@@ -1,6 +1,6 @@
 // Imports
 let grid = document.querySelector(".grid");
-const startButton = document.getElementById("startButton");
+const startButton = document.getElementById("start-button");
 const container = document.querySelector(".container");
 const coverScreen = document.querySelector(".cover-screen");
 const result = document.getElementById("result");
@@ -89,9 +89,9 @@ const gameOverCheck = () => {
 
 // Generate "2" Tiles
 const generateTwo = () => {
-	if (hasEmptyBox()) {
-		let randomRow = randomPosition(matrix);
-		let randomCol = randomPosition(matrix[randomPosition(matrix)]);
+	if (emptyBoxCheck()) {
+		let randomRow = randomPos(matrix);
+		let randomCol = randomPos(matrix[randomPos(matrix)]);
 		if (matrix[randomRow][randomCol] == 0) {
 			matrix[randomRow][randomCol] = 2;
 			let element = document.querySelector(
@@ -110,8 +110,8 @@ const generateTwo = () => {
 // Generate "4" Tiles
 const generateFour = () => {
 	if (hasEmptyBox()) {
-		let randomRow = randomPosition(matrix);
-		let randomCol = randomPosition(matrix[randomPosition(matrix)]);
+		let randomRow = randomPos(matrix);
+		let randomCol = randomPos(matrix[randomPos(matrix)]);
 		if (matrix[randomRow][randomCol] == 0) {
 			matrix[randomRow][randomCol] = 4;
 			let element = document.querySelector(
