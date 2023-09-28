@@ -291,5 +291,25 @@ grid.addEventListener("touchend", (event) => {
 	document.getElementById("score").innerText = score;
 });
 
+// Starting the game
+const startGame = () => {
+	score = 0;
+	document.getElementById("score").innerText = score;
+	grid.innerHTML = "";
+	matrix = [
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+	];
+	container.classList.remove("hide");
+	coverScreen.classList.add("hide");
+	createGrid();
+	generateTwo();
+	generateTwo();
+};
 
-
+startButton.addEventListener("click", () => {
+	startGame();
+	swipeDirection = "";
+});
