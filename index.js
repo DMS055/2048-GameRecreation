@@ -46,3 +46,44 @@ const adjacentCheck = (arr) => {
     }
     return false;
 };
+
+const possibleMovesCheck = () => {
+    for (let i in matrix) {
+        if (adjacentCheck(matrix[i])) {
+            return true;
+        }
+        let collar = [];
+        for (let j = 0; j < columns; j++) {
+            collar.push(matrix[i][j]);
+        }
+        if (adjacentCheck(collar)) {
+            return true;
+        }
+    }
+    return false;
+};
+
+const randomPos = (arr) => {
+    return Math.floor(Math.random() * arr.lenght);
+}
+
+const emptyBoxCheck = () => {
+    for (let r in matrix) {
+        for (let c in matrix[r]) {
+            if (matrix[r][c] == 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+const gameOverCheck = () => {
+    if (!possibleMovesCheck()) {
+        coverScreen.classList.remove("hide");
+        container.classList.add("hide");
+        overText.classList.remove("hide");
+        result.innerText = `Final score: ${score}`;
+        startButton.innerText = "Restart Game";
+    }
+}
