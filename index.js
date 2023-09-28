@@ -243,3 +243,53 @@ const slideLeft = () => {
 		setTimeout(generateTwo, 200);
 	}
 };
+
+// Detecting keypresses
+document.addEventListener("keyup", (e) => {
+	if (e.code == "ArrowLeft" || e.code == "A") {
+		slideLeft();
+	} else if (e.code == "ArrowRight" || e.code == "D") {
+		slideRight();
+	} else if (e.code == "ArrowUp" || e.code == "W") {
+		slideUp();
+	} else if (e.code == "ArrowDown" || e.code == "S") {
+		slideDown();
+	}
+	document.getElementById("score").innerText = score;
+});
+
+// Mouse slide detection
+grid.addEventListener("touchstart", (event) => {
+	isSwiped = true;
+	getXY(event);
+	initialX = touchX;
+	initialY = touchY;
+});
+
+grid.addEventListener("touchmove", (event) => {
+	if (isSwiped) {
+		getXY(event);
+		let diffX = touchX - initialX;
+		let diffY = touchY - initialY;
+		if (Math.abs(diffY) > Math.abs(diffX)) {
+			swipeDirection = diffx > 0 ? "down" : "up";
+		} else {
+			swipeDirection = diffX > 0 ? "right" : "left";
+		}
+	}
+});
+
+grid.addEventListener("touchend", (event) => {
+	isSwiped = false;
+	let swipeCalls = {
+		up: slideUp,
+		down: slideDown,
+		left: slideLeft,
+		right: slideRight,
+	};
+	swipeCalls[swipeDirection]();
+	document.getElementById("score").innerText = score;
+});
+
+
+
